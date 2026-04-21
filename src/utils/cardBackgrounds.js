@@ -1,7 +1,7 @@
-import janjanhadaImg from "../img/잔잔하다.png";
-import meomuldaImg from "../img/머물다.png";
-import banjjagidaImg from "../img/반짝이다.png";
-import seumyeodeuldaImg from "../img/스며들다.png";
+import janjanhadaImg from "../img/jan.png";
+import meomuldaImg from "../img/m.png";
+import banjjagidaImg from "../img/s.png";
+import seumyeodeuldaImg from "../img/su.png";
 
 const directWordImages = {
   잔잔하다: janjanhadaImg,
