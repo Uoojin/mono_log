@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { HashRouter, Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import GoyuPage from "./pages/GoyuPage";
+import BiyuPage from "./pages/BiyuPage";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/goyu" element={<GoyuPage />} />
+        <Route path="/biyu" element={<BiyuPage />} />
+      </Routes>
+    </HashRouter>
   );
 }
 

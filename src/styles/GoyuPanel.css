@@ -1,0 +1,202 @@
+/* ------------------고유어 단어 모달(패널) ------------------*/
+
+.goyu_panel_area {
+  position: sticky;
+  top: 130px;
+  z-index: 20;
+  width: 100%;
+  max-height: calc(100vh - 154px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+.goyu_panel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 154px);
+  overflow: hidden;
+  border: 1px solid #d7dde1;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 20px 42px rgba(20, 28, 34, 0.22);
+}
+
+.panel_hero {
+  flex: 0 0 160px;
+  position: relative;
+  height: 160px;
+  background-position: center;
+  background-size: cover;
+}
+
+.panel_close {
+  position: absolute;
+  top: 26px;
+  right: 28px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.panel_body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 40px 56px 46px;
+  border-radius: 16px;
+}
+
+.panel_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #87919a;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.panel_bookmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  color: #17212b;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.panel_body h2 {
+  margin: 18px 0 26px;
+  color: #25302c;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.panel_meaning {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  border-left: 2px solid #9da8ae;
+  color: #2f3936;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.panel_body > p:not(.panel_meaning) {
+  margin: 0 0 30px;
+  padding-left: 20px;
+  color: #5e686d;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.panel_section {
+  padding: 30px 0;
+  border-top: 1px dashed #d8dee2;
+}
+
+.panel_section h4 {
+  margin: 0 0 18px;
+  color: #a0a9af;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.panel_section p {
+  margin: 8px 0;
+  color: #25302c;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+.panel_section:last-child p {
+  color: #87919a;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.goyu_example_match {
+  color: inherit;
+  font-weight: 950;
+  transition: color 0.2s ease;
+}
+
+.goyu_lang_korean {
+  --goyu-example-color: #3b8397;
+}
+
+.goyu_lang_japanese {
+  --goyu-example-color: #8e7a17;
+}
+
+.goyu_lang_chinese {
+  --goyu-example-color: #aa4b4b;
+}
+
+.goyu_lang_english {
+  --goyu-example-color: #3a8a54;
+}
+
+.goyu_example_match:hover {
+  color: var(--goyu-example-color);
+}
+
+
+
+@media (max-width: 1280px) {
+  .goyu_panel_area {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .goyu_panel_area {
+    width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .goyu_panel_area {
+    position: fixed;
+    inset: auto 24px 24px;
+    top: 120px;
+    width: auto;
+    max-height: none;
+  }
+
+  .goyu_panel {
+    max-height: calc(100vh - 144px);
+  }
+}
+
+@media (max-width: 640px) {
+  .goyu_panel_area {
+    inset: auto 16px 16px;
+    top: 104px;
+  }
+
+  .panel_hero {
+    flex-basis: 120px;
+    height: 120px;
+  }
+
+  .panel_body {
+    padding: 26px 24px 32px;
+  }
+
+  .panel_body h2 {
+    font-size: 26px;
+  }
+}

@@ -1,0 +1,237 @@
+.goyu_content {
+  position: relative;
+}
+
+.goyu_card_area {
+  min-width: 0;
+}
+
+.goyu_card_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px 18px;
+  transition: grid-template-columns 0.2s ease;
+}
+
+.goyu_content.panel_open {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(670px, 370px);
+  gap: 16px;
+  align-items: start;
+}
+
+.goyu_content.panel_open .goyu_card_area {
+  padding-right: 8px;
+}
+
+.goyu_content.panel_open .goyu_card_grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ------------------고유어 단어 카드 ------------------*/
+.goyu_card {
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+  overflow: hidden;
+  border: 1px solid #dfe3e6;
+  border-radius: 16px;
+  background: #ffffff;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.goyu_card:hover,
+.goyu_card.selected {
+  border-color: #adb7bd;
+  box-shadow: 0 12px 30px rgba(26, 36, 44, 0.12);
+  transform: translateY(-2px);
+}
+
+.goyu_card_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 22px 0;
+}
+
+.goyu_card_lan {
+  color: #87919a;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.goyu_card_bookmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: #17212b;
+  cursor: pointer;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.goyu_card_title {
+  margin: 12px 22px 0;
+  color: #27302d;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.goyu_card_meaning {
+  margin: 15px 22px 0;
+  padding-left: 14px;
+  border-left: 2px solid #a9b1b7;
+  color:  #1e1f20;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.58;
+}
+
+.goyu_card_meaning span {
+  display: block;
+  max-width: 400px;
+}
+
+.goyu_card_synonym {
+  margin: auto 22px 0;
+  padding-bottom: 18px;
+  color: #89939a;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.goyu_card_thumb {
+  margin-top: 0;
+  height: 130px;
+  background-color: #d9e1e3;
+  background-position: center;
+  background-size: cover;
+}
+
+.goyu_image_1 .goyu_card_thumb,
+.goyu_image_1 .panel_hero {
+  background-image:
+    radial-gradient(
+      circle at 28% 32%,
+      rgba(255, 255, 255, 0.9) 0 2px,
+      transparent 7px
+    ),
+    radial-gradient(
+      circle at 70% 58%,
+      rgba(255, 255, 255, 0.8) 0 2px,
+      transparent 8px
+    ),
+    linear-gradient(115deg, #31454a, #6f8486 48%, #23363b);
+}
+
+.goyu_image_2 .goyu_card_thumb,
+.goyu_image_2 .panel_hero {
+  background-image:
+    radial-gradient(
+      circle at 48% 45%,
+      rgba(244, 211, 107, 0.8) 0 2px,
+      transparent 30px
+    ),
+    linear-gradient(120deg, rgba(11, 20, 17, 0.68), rgba(47, 78, 62, 0.42)),
+    linear-gradient(115deg, #19251f, #6b7d66);
+}
+
+.goyu_image_3 .goyu_card_thumb,
+.goyu_image_3 .panel_hero {
+  background-image:
+    radial-gradient(
+      circle at 72% 20%,
+      rgba(255, 255, 255, 0.9) 0 1px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at 48% 58%,
+      rgba(188, 206, 231, 0.55),
+      transparent 60px
+    ),
+    linear-gradient(120deg, #111928, #27364d 52%, #0e1422);
+}
+
+.goyu_image_4 .goyu_card_thumb,
+.goyu_image_4 .panel_hero {
+  background-image:
+    radial-gradient(
+      circle at 18% 22%,
+      rgba(255, 255, 255, 0.8),
+      transparent 52px
+    ),
+    linear-gradient(150deg, #eef5fb, #cfdced 46%, #f9fbfd);
+}
+
+.goyu_image_5 .goyu_card_thumb,
+.goyu_image_5 .panel_hero {
+  background-image:
+    radial-gradient(
+      circle at 38% 44%,
+      rgba(255, 255, 255, 0.85),
+      transparent 80px
+    ),
+    linear-gradient(125deg, #dbe2df, #f4f7f4 50%, #bfc9c8);
+}
+
+.goyu_image_6 .goyu_card_thumb,
+.goyu_image_6 .panel_hero {
+  background-image:
+    radial-gradient(
+      circle at 42% 50%,
+      rgba(255, 255, 255, 0.7),
+      transparent 80px
+    ),
+    linear-gradient(135deg, #d9d7ce, #f1eee5 48%, #b9c1bd);
+}
+
+@media (max-width: 1280px) {
+  .goyu_card_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .goyu_content.panel_open {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .goyu_card_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .goyu_content.panel_open {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+  }
+
+  .goyu_content.panel_open .goyu_card_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .goyu_content.panel_open {
+    display: block;
+  }
+
+  .goyu_content.panel_open .goyu_card_area {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .goyu_card_grid,
+  .goyu_content.panel_open .goyu_card_grid {
+    grid-template-columns: 1fr;
+  }
+}

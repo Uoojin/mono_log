@@ -1,0 +1,387 @@
+/* 관용구 조각 페이지 스타일 */
+
+.biyu_page {
+  width: min(100% - 130px, 1640px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 50px 0 72px;
+}
+
+.biyu_body {
+  width: 100%;
+}
+
+.biyu_top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 0 58px;
+}
+
+.biyu_top h1 {
+  margin: 0 0 18px;
+  color: #2e3532;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.biyu_top p {
+  margin: 0;
+  color: #8d969b;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.biyu_top .sort_dropdown {
+  min-width: 0px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+}
+
+.biyu_columns {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.column {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.biyu_card {
+  overflow: hidden;
+  border: 1px solid #dfe3e6;
+  border-radius: 16px;
+  background-color: #ffffff;
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.biyu_card:hover {
+  border-color: #adb7bd;
+  box-shadow: 0 16px 34px rgba(24, 34, 40, 0.16);
+  transform: translateY(-5px);
+}
+
+.biyu_summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 36px;
+  width: 100%;
+  height: 300px;
+  padding: 0;
+  border: 0;
+  background: #ffffff;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.biyu_card_img {
+  grid-column: 1 / -1;
+  height: 112px;
+  background-color: #d9e1e3;
+  background-position: center;
+  background-size: cover;
+  transition: filter 0.35s ease;
+}
+
+.biyu_card:hover .biyu_card_img {
+  filter: brightness(0.78);
+}
+
+.biyu_card_txt {
+  min-width: 0;
+  padding: 28px 0 26px 32px;
+}
+
+.biyu_title {
+  margin: 0 0 10px;
+  color: #1e292f;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.biyu_subtitle {
+  margin: 0 0 50px;
+  color: #3d484e;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.biyu_phrase {
+  margin: 0;
+  color: #8a949b;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.biyu_toggle {
+  align-self: end;
+  justify-self: center;
+  width: 30px;
+  height: 44px;
+  margin: 0 20px 5px 0;
+  color: transparent;
+  position: relative;
+}
+
+.biyu_toggle::after {
+  content: "▽";
+  color: #333637;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.biyu_summary:hover .biyu_toggle::after {
+  content: "▼";
+}
+
+.biyu_card.open .biyu_toggle::after {
+  content: "▲";
+}
+
+.biyu_card_detail {
+  padding: 0 32px 30px;
+  background-color: #ffffff;
+}
+
+.biyu_idiom {
+  --idiom-color: #477b91;
+  --idiom-bg: #d8f0f5;
+  padding: 28px 0;
+  border-top: 1px dashed #d9dee2;
+}
+
+.biyu_idiom:first-child {
+  margin-top: 2px;
+}
+
+.idiom_kr {
+  --idiom-color: #3b8397;
+  --idiom-bg: #d8f4f7;
+}
+
+.idiom_jp {
+  --idiom-color: #8e7a17;
+  --idiom-bg: #fff3aa;
+}
+
+.idiom_cn {
+  --idiom-color: #aa4b4b;
+  --idiom-bg: #f8dada;
+}
+
+.idiom_en {
+  --idiom-color: #3a8a54;
+  --idiom-bg: #d8f4dd;
+}
+
+.idiom_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.idiom_lan {
+  color: #9aa4aa;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.biyu_card_bookmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 34px;
+  border: 0;
+  background: transparent;
+  color: #17212b;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.bookmark_message {
+  margin: -4px 0 12px;
+  color: #5f6b72;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.idiom_word {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 4px 7px;
+  background: var(--idiom-bg);
+  color: #1f292f;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.idiom_meaning {
+  margin: 0 0 30px;
+  color: #3d484e;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.biyu_example_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.biyu_example {
+  margin: 0;
+  color: #1e292f;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.example_match {
+  color: inherit;
+  font-weight: 950;
+  transition: color 0.2s ease;
+}
+
+.example_match:hover {
+  color: var(--idiom-color);
+}
+
+.scroll_observer {
+  height: 24px;
+}
+
+.end_message {
+  margin: 28px 0 0;
+  color: #8a949b;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.toast_message {
+  position: fixed;
+  left: 50%;
+  bottom: 34px;
+  z-index: 1200;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #17212b;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  transform: translateX(-50%);
+}
+
+.biyu_image_1 .biyu_card_img {
+  background-image:
+    radial-gradient(
+      circle at 48% 36%,
+      rgba(239, 208, 91, 0.85) 0 2px,
+      transparent 30px
+    ),
+    linear-gradient(120deg, rgba(11, 20, 17, 0.68), rgba(47, 78, 62, 0.42)),
+    linear-gradient(115deg, #19251f, #6b7d66);
+}
+
+.biyu_image_2 .biyu_card_img {
+  background-image:
+    radial-gradient(
+      circle at 18% 22%,
+      rgba(255, 255, 255, 0.75),
+      transparent 54px
+    ),
+    linear-gradient(150deg, #eef5fb, #cfdced 46%, #f9fbfd);
+}
+
+.biyu_image_3 .biyu_card_img {
+  background-image:
+    radial-gradient(
+      circle at 38% 44%,
+      rgba(255, 255, 255, 0.85),
+      transparent 80px
+    ),
+    linear-gradient(125deg, #dbe2df, #f4f7f4 50%, #bfc9c8);
+}
+
+.biyu_image_4 .biyu_card_img {
+  background-image:
+    radial-gradient(
+      circle at 28% 32%,
+      rgba(255, 255, 255, 0.9) 0 2px,
+      transparent 7px
+    ),
+    radial-gradient(
+      circle at 70% 58%,
+      rgba(255, 255, 255, 0.8) 0 2px,
+      transparent 8px
+    ),
+    linear-gradient(115deg, #31454a, #6f8486 48%, #23363b);
+}
+
+@media (max-width: 1024px) {
+  .biyu_page {
+    width: min(100% - 48px, 1640px);
+    padding: 28px 0 56px;
+  }
+
+  .biyu_top {
+    margin-bottom: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .biyu_page {
+    width: min(100% - 32px, 1640px);
+    padding: 24px 0 48px;
+  }
+
+  .biyu_top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .biyu_columns {
+    flex-direction: column;
+  }
+
+  .column {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .biyu_page {
+    padding: 20px 12px 40px;
+  }
+
+  .biyu_card_txt {
+    padding: 24px 0 24px 22px;
+  }
+
+  .biyu_card_detail {
+    padding: 0 22px 26px;
+  }
+}
