@@ -9,10 +9,10 @@ function Header() {
       </h1>
       <nav className="header_nav">
         <NavLink to="/goyu">Goyu</NavLink>
-        <span>Sori</span>
-        <NavLink to="/biyu">Biyu</NavLink>
-        <span>Oneul</span>
-        <span>Jogak</span>
+        <NavLink to="/sori">Sori</NavLink>
+        <NavLink to="/madi">Madi</NavLink>
+        <NavLink to="/geul">Geul</NavLink>
+        <NavLink to="/jogak">Jogak</NavLink>
       </nav>
     </header>
   );

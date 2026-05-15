@@ -30,6 +30,213 @@ const createExtraGoyuWords = (rows) =>
     })
   );
 
+const themeCategoryWords = {
+  감정: new Set([
+    "눈치",
+    "정",
+    "한",
+    "아련하다",
+    "서운하다",
+    "다정하다",
+    "애틋하다",
+    "설레다",
+    "벅차다",
+    "반갑다",
+    "뭉클하다",
+    "스산하다",
+    "懐かしい",
+    "切ない",
+    "名残惜しい",
+    "缘分",
+    "人情味",
+    "惆怅",
+    "舍不得",
+    "惦念",
+    "酸楚",
+    "serendipity",
+    "bittersweet",
+    "solace",
+    "yearning",
+    "sonder",
+    "wistful",
+    "tender",
+    "awe",
+    "intimate",
+    "homesick",
+  ]),
+  상태: new Set([
+    "포근하다",
+    "잔잔하다",
+    "그윽하다",
+    "먹먹하다",
+    "서늘하다",
+    "고즈넉하다",
+    "아늑하다",
+    "선연하다",
+    "은은하다",
+    "ぬくもり",
+    "しみじみ",
+    "ゆらぎ",
+    "ほのぼの",
+    "すっきり",
+    "うたた寝",
+    "まどろみ",
+    "ひそやか",
+    "凛とする",
+    "温柔",
+    "安稳",
+    "释然",
+    "余温",
+    "悠然",
+    "黯然",
+    "心软",
+    "柔和",
+    "安宁",
+    "静谧",
+    "stillness",
+    "serene",
+    "mellow",
+    "respite",
+    "lucid",
+    "warmth",
+    "reverie",
+  ]),
+  자연: new Set([
+    "木漏れ日",
+    "侘び寂び",
+    "儚い",
+    "余韻",
+    "もったいない",
+    "싱그럽다",
+    "선선하다",
+    "촉촉하다",
+    "きらめき",
+    "そよ風",
+    "たそがれ",
+    "澄み切る",
+    "清冽",
+    "烟火气",
+    "清欢",
+    "惊喜",
+    "luminous",
+    "buoyant",
+    "crisp",
+    "glow",
+  ]),
+  "의성・의태어": new Set([
+    "가물가물하다",
+    "달큰하다",
+    "촉촉하다",
+    "しみじみ",
+    "わくわく",
+    "ふわり",
+    "こだま",
+    "うたた寝",
+    "松弛感",
+    "hush",
+    "drift",
+    "murmur",
+  ]),
+};
+
+const relatedWordPools = {
+  감정: [
+    "설레다",
+    "긴장하다",
+    "떨리다",
+    "그립다",
+    "벅차다",
+    "안타깝다",
+    "반갑다",
+    "서운하다",
+    "다정하다",
+    "애틋하다",
+  ],
+  상태: [
+    "고요하다",
+    "평온하다",
+    "은은하다",
+    "포근하다",
+    "서늘하다",
+    "아늑하다",
+    "차분하다",
+    "담담하다",
+    "또렷하다",
+    "느긋하다",
+  ],
+  자연: [
+    "햇살",
+    "바람",
+    "잔물결",
+    "풀향기",
+    "안개",
+    "노을",
+    "새벽빛",
+    "숲길",
+    "물결",
+    "여운",
+  ],
+  "의성・의태어": [
+    "콩닥콩닥",
+    "반짝반짝",
+    "산들산들",
+    "사르르",
+    "몽글몽글",
+    "아른아른",
+    "두근두근",
+    "보송보송",
+    "소곤소곤",
+    "잔물결",
+  ],
+};
+
+const languageLabels = {
+  KOREAN: "한국어",
+  JAPANESE: "日本語",
+  CHINESE: "中文",
+  ENGLISH: "English",
+};
+
+const languageExpressionOrder = {
+  KOREAN: ["JAPANESE", "CHINESE", "ENGLISH"],
+  JAPANESE: ["KOREAN", "CHINESE", "ENGLISH"],
+  CHINESE: ["KOREAN", "JAPANESE", "ENGLISH"],
+  ENGLISH: ["KOREAN", "JAPANESE", "CHINESE"],
+};
+
+function hashText(text = "") {
+  return [...text].reduce((acc, char) => acc * 31 + char.charCodeAt(0), 7);
+}
+
+function getThemeCategory(word) {
+  for (const [categoryName, words] of Object.entries(themeCategoryWords)) {
+    if (words.has(word)) {
+      return categoryName;
+    }
+  }
+
+  return "상태";
+}
+
+function pickRelatedWords(word, themeCategory) {
+  const pool = relatedWordPools[themeCategory] || relatedWordPools["상태"];
+  const seed = Math.abs(hashText(word));
+  const related = [];
+  let index = seed % pool.length;
+
+  while (related.length < 3) {
+    const candidate = pool[index % pool.length];
+
+    if (candidate !== word && !related.includes(candidate)) {
+      related.push(candidate);
+    }
+
+    index += 3;
+  }
+
+  return related;
+}
+
 const goyuWordBase = [
   {
     id: 1,
@@ -466,9 +673,38 @@ const goyuWordExtra = createExtraGoyuWords([
   [100, "ENGLISH", "영어", "reverie", "rev-uh-ree", "생각에 잠겨 천천히 멀어지는 상태", "현실에 발을 딛고 있으면서도 마음 한편이 꿈결처럼 흐르는 몽상의 순간입니다.", '"She sat by the window in a quiet reverie."', '"The music drew him into reverie."', "reverie", "몽상", "物思い", "遐想"],
 ]);
 
-const goyuWord = [...goyuWordBase, ...goyuWordExtra].map((word) => ({
-  ...word,
-  saved: false,
-}));
+const goyuWordRaw = [...goyuWordBase, ...goyuWordExtra];
+
+const pronunciationLookup = new Map(
+  goyuWordRaw.map((word) => [`${word.language}:${word.word}`, word.pronounce]),
+);
+
+function formatExpression(language, expression) {
+  const pronounce = pronunciationLookup.get(`${language}:${expression}`);
+
+  return pronounce ? `${expression} (${pronounce})` : expression;
+}
+
+function buildLanguageExpressions(word) {
+  const orders = languageExpressionOrder[word.language] || [];
+
+  return orders.map((language, index) => ({
+    language,
+    label: languageLabels[language],
+    value: formatExpression(language, word.synonym[index]),
+  }));
+}
+
+const goyuWord = goyuWordRaw.map((word) => {
+  const themeCategory = getThemeCategory(word.word);
+
+  return {
+    ...word,
+    themeCategory,
+    relatedWords: pickRelatedWords(word.word, themeCategory),
+    languageExpressions: buildLanguageExpressions(word),
+    saved: false,
+  };
+});
 
 export default goyuWord;

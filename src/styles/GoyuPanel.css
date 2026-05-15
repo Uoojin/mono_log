@@ -2,7 +2,7 @@
 
 .goyu_panel_area {
   position: sticky;
-  top: 130px;
+  top: 146px;
   z-index: 20;
   width: 100%;
   max-height: calc(100vh - 154px);
@@ -18,7 +18,7 @@
   border: 1px solid #d7dde1;
   border-radius: 16px;
   background: #ffffff;
-  box-shadow: 0 20px 42px rgba(20, 28, 34, 0.22);
+  box-shadow: 0 14px 32px rgba(20, 28, 34, 0.10);
 }
 
 .panel_hero {
@@ -48,30 +48,25 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 40px 56px 46px;
-  border-radius: 16px;
 }
 
 .panel_header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   color: #87919a;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
-.panel_bookmark {
+.panel_header span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 40px;
-  border: 0;
-  background: transparent;
-  color: #17212b;
-  cursor: pointer;
-  font-size: 24px;
-  line-height: 1;
+  min-width: 64px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #eef1f3;
 }
 
 .panel_body h2 {
@@ -127,6 +122,75 @@
   font-weight: 500;
 }
 
+.panel_related_words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+}
+
+.panel_related_chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 112px;
+  padding: 14px 22px;
+  border: 1px solid #dde3e7;
+  border-radius: 18px;
+  color: #4b5560;
+  font-size: 16px;
+  font-weight: 700;
+  background: #ffffff;
+}
+
+.panel_language_list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel_language_row {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.panel_language_label {
+  color: #99a3aa;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.panel_language_value {
+  color: #6f7a82;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.panel_save_button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 18px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #16283b;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.panel_save_button:hover {
+  background: #1d3349;
+  box-shadow: 0 14px 28px rgba(22, 40, 59, 0.16);
+  transform: translateY(-1px);
+}
+
 .goyu_example_match {
   color: inherit;
   font-weight: 950;
@@ -134,19 +198,19 @@
 }
 
 .goyu_lang_korean {
-  --goyu-example-color: #3b8397;
+  --goyu-example-color: #CDF7FF;
 }
 
 .goyu_lang_japanese {
-  --goyu-example-color: #8e7a17;
+  --goyu-example-color: #FFFBD3;
 }
 
 .goyu_lang_chinese {
-  --goyu-example-color: #aa4b4b;
+  --goyu-example-color: #FFE1E1;
 }
 
 .goyu_lang_english {
-  --goyu-example-color: #3a8a54;
+  --goyu-example-color: #E1FFEC;
 }
 
 .goyu_example_match:hover {

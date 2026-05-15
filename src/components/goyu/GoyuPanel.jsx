@@ -36,14 +36,7 @@ function GoyuPanel({ card, onClose, onBookmark }) {
 
       <div className="panel_body">
         <div className="panel_header">
-          <span>{card.language}</span>
-          <button
-            type="button"
-            className="panel_bookmark"
-            onClick={() => onBookmark(card.id)}
-          >
-            {card.saved ? "🖤" : "🤍"}
-          </button>
+          <span>{card.themeCategory}</span>
         </div>
 
         <h2>
@@ -65,13 +58,38 @@ function GoyuPanel({ card, onClose, onBookmark }) {
         </section>
 
         <section className="panel_section">
-          <h4>유사 표현</h4>
-          <p>{card.synonym.join(" ・ ")}</p>
+          <h4>관련 단어</h4>
+          <div className="panel_related_words">
+            {card.relatedWords.map((word) => (
+              <span key={word} className="panel_related_chip">
+                {word}
+              </span>
+            ))}
+          </div>
         </section>
+
+        <section className="panel_section">
+          <h4>언어별 표현</h4>
+          <div className="panel_language_list">
+            {card.languageExpressions.map((expression) => (
+              <div key={expression.language} className="panel_language_row">
+                <span className="panel_language_label">{expression.label}</span>
+                <span className="panel_language_value">{expression.value}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <button
+          type="button"
+          className="panel_save_button"
+          onClick={() => onBookmark(card.id)}
+        >
+          {card.saved ? "✓ 아카이브에 저장됨" : "+ 아카이브에 저장하기"}
+        </button>
       </div>
     </div>
   );
 }
-
 
 export default GoyuPanel;

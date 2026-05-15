@@ -16,31 +16,36 @@ import "../styles/GoyuPanel.css";
 function GoyuPage() {
   const location = useLocation();
 
-  const [selectedLan, setSelectedLan] = useState("전체");
+  const [selectedLanguage, setSelectedLanguage] = useState("전체");
+  const [sortValue, setSortValue] = useState("recent");
   const [selectedCard, setSelectedCard] = useState(null);
   const [visibleCount, setVisibleCount] = useState(12);
-  const [sortValue, setSortValue] = useState("default");
-  const [cards, setCards] = useState(goyuWord);
+  const [cards, setCards] = useState(() => {
+    const quota = { KOREAN: 9, JAPANESE: 9, CHINESE: 9, ENGLISH: 8 };
+    return Object.entries(quota).flatMap(([language, count]) =>
+      goyuWord.filter((word) => word.language === language).slice(0, count),
+    );
+  });
   const [toastMessage, setToastMessage] = useState("");
   const [showEndMessage, setShowEndMessage] = useState(false);
   const observerTarget = useRef(null);
   const endMessageTimer = useRef(null);
 
   // 카테고리 (언어별)-------------------------------------------
-  const lanOptions = ["전체", "한국어", "일본어", "중국어", "영어"];
+  const languageOptions = ["전체", "한국어", "일본어", "중국어", "영어"];
 
   let filteredData;
 
-  if (selectedLan === "전체") {
+  if (selectedLanguage === "전체") {
     filteredData = cards;
   } else {
-    filteredData = cards.filter((item) => item.category === selectedLan);
+    filteredData = filteredData.filter((item) => item.category === selectedLanguage);
   }
 
   // 메인 언어 카드 선택 -> 해당 언어 카테고리 항목으로 이동
   useEffect(() => {
     if (location.state?.selectedLan) {
-      setSelectedLan(location.state.selectedLan);
+      setSelectedLanguage(location.state.selectedLan);
       setSelectedCard(null);
       setVisibleCount(12);
 
@@ -50,25 +55,30 @@ function GoyuPage() {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    if (location.state?.openCardId) {
+      const opened = cards.find((card) => card.id === location.state.openCardId);
+
+      if (opened) {
+        setSelectedLanguage("전체");
+        setSelectedCard(opened);
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+    }
+  }, [cards, location.state]);
+
   // 정렬-------------------------------------------
   const sortOptions = [
-    { value: "default", label: "정렬" },
-    { value: "language", label: "언어별" },
-    { value: "saved", label: "보관순" },
+    { value: "recent", label: "최신순" },
+    { value: "saved", label: "저장순" },
   ];
 
   let sortedData = [...filteredData];
 
-  if (sortValue === "language") {
-    const order = ["한국어", "일본어", "중국어", "영어"];
-
-    sortedData.sort(
-      (a, b) => order.indexOf(a.category) - order.indexOf(b.category),
-    );
+  if (sortValue === "recent") {
+    sortedData.reverse();
   } else if (sortValue === "saved") {
-    sortedData.sort((a, b) => b.saved - a.saved);
-  } else if (sortValue === "length") {
-    sortedData.sort((a, b) => a.word.length - b.word.length);
+    sortedData.sort((a, b) => Number(b.saved) - Number(a.saved));
   }
 
   // 북마크-------------------------------------------
@@ -101,7 +111,7 @@ function GoyuPage() {
     setVisibleCount(12);
     setSelectedCard(null);
     setShowEndMessage(false);
-  }, [selectedLan, sortValue]);
+  }, [selectedLanguage, sortValue]);
 
   const flashEndMessage = () => {
     setShowEndMessage(true);
@@ -188,7 +198,7 @@ function GoyuPage() {
           <div className="goyu_top">
             <div>
               <h1>고유어 조각</h1>
-              <p>| 번역되지 않는 말들</p>
+              <p>| 번역되지 않는 말들의 감정과 결을 모았습니다.</p>
             </div>
           </div>
 
@@ -196,9 +206,9 @@ function GoyuPage() {
           <div className="goyu_toolbar">
             <div className="goyu_filter">
               <FilterButton
-                options={lanOptions}
-                selected={selectedLan}
-                onSelect={setSelectedLan}
+                options={languageOptions}
+                selected={selectedLanguage}
+                onSelect={setSelectedLanguage}
               />
             </div>
 

@@ -1,0 +1,231 @@
+.sori_page {
+  width: min(100% - 130px, 1640px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 50px 0 72px;
+}
+
+.sori_body {
+  width: 100%;
+}
+
+.page_intro {
+  margin: 0 0 34px;
+}
+
+.page_intro h1 {
+  margin: 0 0 24px;
+  color: #172838;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.page_intro p {
+  margin: 0;
+  color: #607486;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.sori_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px 18px;
+  margin-top: 70px;
+}
+
+.sori_card {
+  min-height: 435px;
+  padding: 30px 28px 26px;
+  border: 1px solid #dfe3e6;
+  border-radius: 16px;
+  background: #ffffff;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.sori_card:hover {
+  box-shadow: 0 16px 30px rgba(24, 34, 40, 0.10);
+  transform: translateY(-3px);
+}
+
+.sori_card_head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.sori_card_head h2 {
+  margin: 0;
+  color: #1e292f;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.sori_card_head button {
+  border: 0;
+  background: transparent;
+  color: #172838;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.sori_meaning {
+  min-height: 48px;
+  margin: 16px 0 28px;
+  color: #273845;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.sori_shape {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 140px;
+  margin: 0 -28px 28px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fbfcfd, #f6f8f9);
+  perspective: 800px;
+}
+
+.sori_shape span {
+  position: absolute;
+  border: 1px solid rgba(158, 176, 188, 0.24);
+  background: rgba(255, 255, 255, 0.32);
+  transform-style: preserve-3d;
+}
+
+.sori_shape_wave span {
+  width: 118%;
+  height: 58px;
+  border-radius: 50%;
+  animation: waveMove 3s ease-in-out infinite;
+}
+
+.sori_shape_wave span:nth-child(2) { animation-delay: -0.7s; transform: translateY(18px); }
+.sori_shape_wave span:nth-child(3) { animation-delay: -1.3s; transform: translateY(-18px); }
+
+.sori_shape_pulse span,
+.sori_shape_drop span,
+.sori_shape_plop span {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  animation: pulseMove 1.8s ease-in-out infinite;
+}
+
+.sori_shape_pulse span:nth-child(2),
+.sori_shape_drop span:nth-child(2),
+.sori_shape_plop span:nth-child(2) { animation-delay: 0.28s; }
+.sori_shape_pulse span:nth-child(3),
+.sori_shape_drop span:nth-child(3),
+.sori_shape_plop span:nth-child(3) { animation-delay: 0.56s; }
+
+.sori_shape_spark span,
+.sori_shape_glimmer span {
+  width: 22px;
+  height: 72px;
+  border-radius: 999px;
+  animation: sparkMove 1.6s ease-in-out infinite;
+}
+
+.sori_shape_spark span:nth-child(2),
+.sori_shape_glimmer span:nth-child(2) { transform: rotate(60deg); animation-delay: 0.25s; }
+.sori_shape_spark span:nth-child(3),
+.sori_shape_glimmer span:nth-child(3) { transform: rotate(-60deg); animation-delay: 0.5s; }
+
+.sori_shape_float span,
+.sori_shape_bubble span,
+.sori_shape_sweep span {
+  width: 74px;
+  height: 74px;
+  border-radius: 28px;
+  animation: floatShape 2.6s ease-in-out infinite;
+}
+
+.sori_shape_float span:nth-child(2),
+.sori_shape_bubble span:nth-child(2),
+.sori_shape_sweep span:nth-child(2) { width: 48px; height: 48px; animation-delay: -0.8s; }
+.sori_shape_float span:nth-child(3),
+.sori_shape_bubble span:nth-child(3),
+.sori_shape_sweep span:nth-child(3) { width: 32px; height: 32px; animation-delay: -1.4s; }
+
+.sori_shape_rain span,
+.sori_shape_stream span,
+.sori_shape_rustle span,
+.sori_shape_noise span,
+.sori_shape_roll span,
+.sori_shape_ripple span {
+  width: 1px;
+  height: 112px;
+  animation: lineMove 2.2s ease-in-out infinite;
+}
+
+.sori_shape_rain span:nth-child(2),
+.sori_shape_stream span:nth-child(2),
+.sori_shape_rustle span:nth-child(2),
+.sori_shape_noise span:nth-child(2),
+.sori_shape_roll span:nth-child(2),
+.sori_shape_ripple span:nth-child(2) { transform: translateX(-40px); animation-delay: -0.6s; }
+.sori_shape_rain span:nth-child(3),
+.sori_shape_stream span:nth-child(3),
+.sori_shape_rustle span:nth-child(3),
+.sori_shape_noise span:nth-child(3),
+.sori_shape_roll span:nth-child(3),
+.sori_shape_ripple span:nth-child(3) { transform: translateX(42px); animation-delay: -1s; }
+
+.sori_expression_list {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 10px 18px;
+  color: #87919a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sori_expression_list b {
+  color: #8a949b;
+  font-weight: 700;
+}
+
+.sori_end_message {
+  margin: 105px 0 32px;
+  color: #8a949b;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.8;
+  text-align: center;
+}
+
+@keyframes waveMove {
+  50% { transform: translate3d(16px, 8px, 34px) rotateX(16deg); }
+}
+
+@keyframes pulseMove {
+  50% { transform: scale(2.2) translateZ(22px); opacity: 0.2; }
+}
+
+@keyframes sparkMove {
+  50% { transform: rotate(24deg) scale(1.24) translateZ(36px); opacity: 0.45; }
+}
+
+@keyframes floatShape {
+  50% { transform: translate3d(18px, -16px, 38px) rotate(18deg); }
+}
+
+@keyframes lineMove {
+  50% { transform: translate3d(24px, 0, 28px) rotate(7deg); opacity: 0.28; }
+}
+
+@media (max-width: 1024px) {
+  .sori_page { width: min(100% - 48px, 1640px); }
+  .sori_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .sori_page { width: min(100% - 32px, 1640px); padding-top: 30px; }
+  .sori_grid { grid-template-columns: 1fr; margin-top: 36px; }
+}
