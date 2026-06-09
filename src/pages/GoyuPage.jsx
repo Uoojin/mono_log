@@ -1,268 +1,110 @@
-// 고유어 조각 상세페이지 구성
-
-import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useMemo, useState } from "react";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
-import FilterButton from "../components/common/FilterButton";
-import SortDropdown from "../components/common/SortDropdown";
-import GoyuCard from "../components/goyu/GoyuCard";
-import GoyuPanel from "../components/goyu/GoyuPanel";
 import goyuWord from "../data/goyuWord";
-import "../styles/GoyuPage.css";
-import "../styles/GoyuCard.css";
-import "../styles/GoyuPanel.css";
+import { languageTabs } from "../data/siteContent";
+import "../styles/CommonPage.css";
+
+const languageMap = {
+  전체: "전체",
+  한국어: "한국어",
+  일본어: "일본어",
+  중국어: "중국어",
+  영어: "영어",
+};
+
+function Tabs({ options, selected, onSelect }) {
+  return (
+    <div className="mono_tabs">
+      {options.map((option) => (
+        <button
+          type="button"
+          key={option}
+          className={selected === option ? "active" : ""}
+          onClick={() => onSelect(option)}
+        >
+          {option}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function GoyuPage() {
-  const location = useLocation();
+  const [selected, setSelected] = useState("전체");
+  const [visibleCount, setVisibleCount] = useState(10);
 
-  const [selectedLanguage, setSelectedLanguage] = useState("전체");
-  const [sortValue, setSortValue] = useState("recent");
-  const [selectedCard, setSelectedCard] = useState(null);
-  const [visibleCount, setVisibleCount] = useState(12);
-  const [cards, setCards] = useState(() => {
-    const quota = { KOREAN: 9, JAPANESE: 9, CHINESE: 9, ENGLISH: 8 };
-    return Object.entries(quota).flatMap(([language, count]) =>
-      goyuWord.filter((word) => word.language === language).slice(0, count),
-    );
-  });
-  const [toastMessage, setToastMessage] = useState("");
-  const [showEndMessage, setShowEndMessage] = useState(false);
-  const observerTarget = useRef(null);
-  const endMessageTimer = useRef(null);
+  const words = useMemo(
+    () => {
+      const categories = languageTabs.filter((tab) => tab !== "전체");
+      const groupedWords = categories.map((category) =>
+        goyuWord.filter((word) => word.category === category).slice(0, 5),
+      );
+      const balancedWords = Array.from({ length: 5 }, (_, index) =>
+        groupedWords.map((group) => group[index]),
+      ).flat().filter(Boolean);
 
-  // 카테고리 (언어별)-------------------------------------------
-  const languageOptions = ["전체", "한국어", "일본어", "중국어", "영어"];
-
-  let filteredData;
-
-  if (selectedLanguage === "전체") {
-    filteredData = cards;
-  } else {
-    filteredData = filteredData.filter((item) => item.category === selectedLanguage);
-  }
-
-  // 메인 언어 카드 선택 -> 해당 언어 카테고리 항목으로 이동
-  useEffect(() => {
-    if (location.state?.selectedLan) {
-      setSelectedLanguage(location.state.selectedLan);
-      setSelectedCard(null);
-      setVisibleCount(12);
-
-      if (location.state.scrollTop) {
-        window.scrollTo({ top: 0, behavior: "auto" });
-      }
-    }
-  }, [location.state]);
-
-  useEffect(() => {
-    if (location.state?.openCardId) {
-      const opened = cards.find((card) => card.id === location.state.openCardId);
-
-      if (opened) {
-        setSelectedLanguage("전체");
-        setSelectedCard(opened);
-        window.scrollTo({ top: 0, behavior: "auto" });
-      }
-    }
-  }, [cards, location.state]);
-
-  // 정렬-------------------------------------------
-  const sortOptions = [
-    { value: "recent", label: "최신순" },
-    { value: "saved", label: "저장순" },
-  ];
-
-  let sortedData = [...filteredData];
-
-  if (sortValue === "recent") {
-    sortedData.reverse();
-  } else if (sortValue === "saved") {
-    sortedData.sort((a, b) => Number(b.saved) - Number(a.saved));
-  }
-
-  // 북마크-------------------------------------------
-  const bookmark = (id) => {
-    const targetCard = cards.find((card) => card.id === id);
-
-    if (!targetCard) return;
-
-    setCards((prev) =>
-      prev.map((card) =>
-        card.id === id ? { ...card, saved: !card.saved } : card,
-      ),
-    );
-
-    if (!targetCard.saved) {
-      setToastMessage("조각이 보관되었습니다");
-
-      setTimeout(() => {
-        setToastMessage("");
-      }, 1500);
-    }
-  };
-
-  const currentSelectedCard = cards.find(
-    (card) => card.id === selectedCard?.id,
+      return balancedWords;
+    },
+    [],
   );
 
-  // 무한스크롤 (스크롤시 단어카드 계속 등장할 수 있도록)--------------
-  useEffect(() => {
-    setVisibleCount(12);
-    setSelectedCard(null);
-    setShowEndMessage(false);
-  }, [selectedLanguage, sortValue]);
+  const filtered =
+    selected === "전체"
+      ? words
+      : words.filter((word) => word.category === languageMap[selected]);
+  const visibleWords = filtered.slice(0, visibleCount);
 
-  const flashEndMessage = () => {
-    setShowEndMessage(true);
-
-    if (endMessageTimer.current) {
-      clearTimeout(endMessageTimer.current);
-    }
-
-    endMessageTimer.current = setTimeout(() => {
-      setShowEndMessage(false);
-    }, 1800);
+  const selectTab = (next) => {
+    setSelected(next);
+    setVisibleCount(10);
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-
-        if (entry.isIntersecting && visibleCount < sortedData.length) {
-          const nextVisibleCount = Math.min(visibleCount + 8, sortedData.length);
-
-          setVisibleCount(nextVisibleCount);
-
-          if (nextVisibleCount >= sortedData.length) {
-            flashEndMessage();
-          }
-        } else if (
-          entry.isIntersecting &&
-          visibleCount >= sortedData.length &&
-          sortedData.length > 0
-        ) {
-          flashEndMessage();
-        }
-      },
-      {
-        threshold: 1,
-      },
-    );
-
-    const currentTarget = observerTarget.current;
-
-    if (currentTarget) {
-      observer.observe(currentTarget);
-    }
-
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget);
-      }
-    };
-  }, [visibleCount, sortedData.length]);
-
-  useEffect(() => {
-    return () => {
-      if (endMessageTimer.current) {
-        clearTimeout(endMessageTimer.current);
-      }
-    };
-  }, []);
-
-  const closePanelFromBackground = (e) => {
-    if (!selectedCard) return;
-
-    const ignoredElement = e.target.closest(
-      ".goyu_card, .goyu_panel, .filter_btn, .sort_dropdown",
-    );
-
-    if (!ignoredElement) {
-      setSelectedCard(null);
-    }
-  };
-
-  const visibleData = sortedData.slice(0, visibleCount);
-
-  // console.log(visibleCount, sortedData.length, isEnd);
 
   return (
     <>
       <Header />
+      <main className="detail_page">
+        <section className="detail_intro">
+          <h1>고유,<br />번역되지 않는 말들</h1>
+          <p>
+            어떤 단어는 하나의 언어 안에서만 태어나고 사용됩니다.
+            <br />
+            Goyu는 각 언어의 고유어를 통해 번역만으로는 전해지지 않는 감정과 의미를 살펴봅니다.
+          </p>
+        </section>
 
-      {/* 고유어 본문 영역 ------------------------------------------*/}
-      <main className="goyu_page" onClick={closePanelFromBackground}>
-        <section className="goyu_body">
-          <div className="goyu_top">
-            <div>
-              <h1>고유어 조각</h1>
-              <p>| 번역되지 않는 말들의 감정과 결을 모았습니다.</p>
-            </div>
+        <section className="detail_list_section">
+          <Tabs options={languageTabs} selected={selected} onSelect={selectTab} />
+          <div className="goyu_card_grid">
+            {visibleWords.map((card) => (
+              <article className="goyu_word_card" key={card.id}>
+                <img src={card.image} alt="" />
+                <div className="goyu_word_body">
+                  <h2>{card.word} <span>[{card.pronounce}]</span></h2>
+                  <p className="meaning">| {card.meaning}</p>
+                  <p className="description">{card.description}</p>
+                  <div className="card_divider"></div>
+                  <span className="example_label">예문</span>
+                  {card.examples.map((example) => (
+                    <p className="example" key={example}>{example}</p>
+                  ))}
+                  <div className="card_divider"></div>
+                  <div className="related_chips">
+                    {card.synonym.slice(0, 3).map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
-
-          {/* 고유어 언어 필터 영역 ------------------------------------------*/}
-          <div className="goyu_toolbar">
-            <div className="goyu_filter">
-              <FilterButton
-                options={languageOptions}
-                selected={selectedLanguage}
-                onSelect={setSelectedLanguage}
-              />
-            </div>
-
-            <SortDropdown
-              value={sortValue}
-              onChange={(e) => setSortValue(e.target.value)}
-              options={sortOptions}
-            />
-          </div>
-
-          {/* 고유어 단어 카드 리스트 영역 ------------------------------------------*/}
-          <div className={`goyu_content ${selectedCard ? "panel_open" : ""}`}>
-            <div className="goyu_card_area">
-              <div className="goyu_card_grid">
-                {visibleData.map((card) => (
-                  <GoyuCard
-                    key={card.id}
-                    card={card}
-                    isSelected={selectedCard?.id === card.id}
-                    onClick={setSelectedCard}
-                    onBookmark={bookmark}
-                  />
-                ))}
-              </div>
-
-              {showEndMessage && (
-                <p className="end_message">모든 조각을 확인했습니다</p>
-              )}
-
-              <div ref={observerTarget} className="scroll_observer"></div>
-            </div>
-
-            {/* 고유어 단어 모달창(오른쪽 패널) 영역 ------------------------------------------*/}
-            {selectedCard && currentSelectedCard && (
-              <div
-                className="goyu_panel_area"
-                onWheel={(e) => e.stopPropagation()}
-              >
-                <GoyuPanel
-                  key={currentSelectedCard.id}
-                  card={currentSelectedCard}
-                  onClose={() => setSelectedCard(null)}
-                  onBookmark={bookmark}
-                />
-              </div>
-            )}
-          </div>
+          {visibleCount < filtered.length && (
+            <button className="load_more_btn" type="button" onClick={() => setVisibleCount((count) => count + 6)}>
+              더 많은 단어 보기
+            </button>
+          )}
         </section>
       </main>
-
-      {toastMessage && <div className="toast_message">{toastMessage}</div>}
-
-      {/* --------------------------------------------------------------------*/}
-
       <Footer />
     </>
   );

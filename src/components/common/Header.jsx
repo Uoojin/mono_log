@@ -1,18 +1,32 @@
+import { NavLink } from "react-router-dom";
+import logo from "../../img/logo.png";
 import "../../styles/Header.css";
-import { Link, NavLink } from "react-router-dom";
+
+const menuItems = [
+  { label: "Goyu", to: "/goyu" },
+  { label: "Sori", to: "/sori" },
+  { label: "Madi", to: "/madi" },
+  { label: "Sai", to: "/sai" },
+  { label: "Iyagi", to: "/iyagi" },
+];
 
 function Header() {
+  const refreshMain = (event) => {
+    event.preventDefault();
+    window.location.href = "/";
+  };
+
   return (
-    <header className="header">
-      <h1 className="header_logo">
-        <Link to="/">MONO-LOG</Link>
-      </h1>
-      <nav className="header_nav">
-        <NavLink to="/goyu">Goyu</NavLink>
-        <NavLink to="/sori">Sori</NavLink>
-        <NavLink to="/madi">Madi</NavLink>
-        <NavLink to="/geul">Geul</NavLink>
-        <NavLink to="/jogak">Jogak</NavLink>
+    <header className="site_header">
+      <a className="site_logo" href="/" aria-label="Mono-Log main" onClick={refreshMain}>
+        <img src={logo} alt="MONO-LOG" />
+      </a>
+      <nav className="site_nav" aria-label="Mono-Log detail pages">
+        {menuItems.map((item) => (
+          <NavLink key={item.to} to={item.to}>
+            {item.label}
+          </NavLink>
+        ))}
       </nav>
     </header>
   );

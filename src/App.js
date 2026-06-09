@@ -1,12 +1,11 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import ScrollToTop from "./components/common/ScrollToTop";
 import MainPage from "./pages/MainPage";
 import GoyuPage from "./pages/GoyuPage";
-import BiyuPage from "./pages/BiyuPage";
 import SoriPage from "./pages/SoriPage";
-import GeulPage from "./pages/GeulPage";
-import GeulDetailPage from "./pages/GeulDetailPage";
-import JogakPage from "./pages/JogakPage";
-import ScrollToTop from "./components/common/ScrollToTop";
+import MadiPage from "./pages/MadiPage";
+import SaiPage from "./pages/SaiPage";
+import IyagiPage from "./pages/IyagiPage";
 
 function App() {
   return (
@@ -16,10 +15,9 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/goyu" element={<GoyuPage />} />
         <Route path="/sori" element={<SoriPage />} />
-        <Route path="/madi" element={<BiyuPage />} />
-        <Route path="/geul" element={<GeulPage />} />
-        <Route path="/geul/:bookId" element={<GeulDetailPage />} />
-        <Route path="/jogak" element={<JogakPage />} />
+        <Route path="/madi" element={<MadiPage />} />
+        <Route path="/sai" element={<SaiPage />} />
+        <Route path="/iyagi" element={<IyagiPage />} />
       </Routes>
     </HashRouter>
   );
