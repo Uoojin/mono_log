@@ -42,22 +42,11 @@ import madi02Kr from "../img/madi/img5.png";
 import madi02Jp from "../img/madi/img6.png";
 import madi02Cn from "../img/madi/img7.png";
 import madi02En from "../img/madi/img8.png";
-import madi03Kr from "../img/madi/img9.png";
-import madi03Jp from "../img/madi/img10.png";
-import madi03Cn from "../img/madi/img11.png";
-import madi03En from "../img/madi/img12.png";
 import madi04Kr from "../img/madi/img13.png";
 import madi04Jp from "../img/madi/img14.png";
 import madi04Cn from "../img/madi/img15.png";
 import madi04En from "../img/madi/img16.png";
-import madi06Kr from "../img/madi/img21.png";
 import madi06Jp from "../img/madi/img22.png";
-import madi06Cn from "../img/madi/img23.png";
-import madi06En from "../img/madi/img24.png";
-import madi07Kr from "../img/madi/img25.png";
-import madi07Jp from "../img/madi/img26.png";
-import madi07Cn from "../img/madi/img27.png";
-import madi07En from "../img/madi/img28.png";
 import madi08Kr from "../img/madi/img29.png";
 import madi08Jp from "../img/madi/img30.png";
 import madi08Cn from "../img/madi/img31.png";
@@ -140,10 +129,10 @@ export const madiItems = [
     situation: "비밀을 말할 때 | 조심해야 할 이야기를 나눌 때 | 말과 행동을 신중히 해야 할 때",
     note: "공동체 속에서 말의 책임과 신중함을 강조하는 표현입니다.",
     expressions: [
-      { lang: "한국어", image: madi03Kr, phrase: "낮말은 새가 듣고 밤말은 쥐가 듣는다", meaning: "낮에 하는 말은 새가 듣고 밤에 하는 말은 쥐가 듣는다." },
-      { lang: "일본어", image: madi03Jp, phrase: "壁をすれば影がさす", meaning: "누군가의 이야기를 하면 그 사람이 나타난다." },
-      { lang: "중국어", image: madi03Cn, phrase: "隔墙有耳", meaning: "벽 너머에도 귀가 있다." },
-      { lang: "영어", image: madi03En, phrase: "Walls have ears.", meaning: "벽에도 귀가 있다." },
+      { lang: "한국어", image: madi13Kr, phrase: "낮말은 새가 듣고 밤말은 쥐가 듣는다", meaning: "낮에 하는 말은 새가 듣고 밤에 하는 말은 쥐가 듣는다." },
+      { lang: "일본어", image: madi13Jp, phrase: "壁をすれば影がさす", meaning: "누군가의 이야기를 하면 그 사람이 나타난다." },
+      { lang: "중국어", image: madi13En, phrase: "隔墙有耳", meaning: "벽 너머에도 귀가 있다." },
+      { lang: "영어", image: madi13En, phrase: "Walls have ears.", meaning: "벽에도 귀가 있다." },
     ],
   },
   {
@@ -188,10 +177,10 @@ export const madiItems = [
     situation: "처음부터 완벽할 수 없을 때",
     note: "성장과 숙련은 시작의 어색함을 통과하며 만들어집니다.",
     expressions: [
-      { lang: "한국어", image: madi06Kr, phrase: "첫술에 배부르랴", meaning: "처음부터 만족스러운 결과를 기대하기 어렵다." },
-      { lang: "일본어", image: madi06Jp, phrase: "千里の道も一歩から", meaning: "천 리 길도 한 걸음부터." },
-      { lang: "중국어", image: madi06Cn, phrase: "万事开头难", meaning: "모든 일은 시작이 어렵다." },
-      { lang: "영어", image: madi06En, phrase: "Rome was not built in a day.", meaning: "큰 일은 하루아침에 완성되지 않는다." },
+      { lang: "한국어", image: madi02Kr, phrase: "첫술에 배부르랴", meaning: "처음부터 만족스러운 결과를 기대하기 어렵다." },
+      { lang: "일본어", image: madi02Jp, phrase: "千里の道も一歩から", meaning: "천 리 길도 한 걸음부터." },
+      { lang: "중국어", image: madi02Cn, phrase: "万事开头难", meaning: "모든 일은 시작이 어렵다." },
+      { lang: "영어", image: madi02En, phrase: "Rome was not built in a day.", meaning: "큰 일은 하루아침에 완성되지 않는다." },
     ],
   },
   {
@@ -204,10 +193,10 @@ export const madiItems = [
     situation: "상대의 호의를 마주할 때",
     note: "웃음과 부드러운 태도는 갈등의 날을 낮춥니다.",
     expressions: [
-      { lang: "한국어", image: madi07Kr, phrase: "웃는 얼굴에 침 못 뱉는다", meaning: "좋은 태도로 대하는 사람에게 모질게 하기 어렵다." },
-      { lang: "일본어", image: madi07Jp, phrase: "笑う門には福来る", meaning: "웃음이 있는 곳에 복이 온다." },
-      { lang: "중국어", image: madi07Cn, phrase: "伸手不打笑脸人", meaning: "웃는 얼굴의 사람은 때리지 못한다." },
-      { lang: "영어", image: madi07En, phrase: "A smile disarms.", meaning: "미소는 경계를 낮춘다." },
+      { lang: "한국어", image: madi04Kr, phrase: "웃는 얼굴에 침 못 뱉는다", meaning: "좋은 태도로 대하는 사람에게 모질게 하기 어렵다." },
+      { lang: "일본어", image: madi04Jp, phrase: "笑う門には福来る", meaning: "웃음이 있는 곳에 복이 온다." },
+      { lang: "중국어", image: madi04Cn, phrase: "伸手不打笑脸人", meaning: "웃는 얼굴의 사람은 때리지 못한다." },
+      { lang: "영어", image: madi04En, phrase: "A smile disarms.", meaning: "미소는 경계를 낮춘다." },
     ],
   },
   {
@@ -332,10 +321,10 @@ export const madiItems = [
     situation: "좋은 일도 기본이 채워져야 즐길 수 있을 때",
     note: "언어는 감정뿐 아니라 몸의 리듬까지 기억합니다.",
     expressions: [
-      { lang: "한국어", image: madi15Kr, phrase: "금강산도 식후경", meaning: "아무리 좋은 것도 먹은 뒤에야 즐길 수 있다." },
-      { lang: "일본어", image: madi15Jp, phrase: "腹が減っては戦はできぬ", meaning: "배가 고프면 싸울 수 없다." },
-      { lang: "중국어", image: madi15Cn, phrase: "民以食为天", meaning: "사람에게 먹는 것은 하늘처럼 중요하다." },
-      { lang: "영어", image: madi15En, phrase: "An army marches on its stomach.", meaning: "군대도 먹어야 움직인다." },
+      { lang: "한국어", image: madi02Cn, phrase: "금강산도 식후경", meaning: "아무리 좋은 것도 먹은 뒤에야 즐길 수 있다." },
+      { lang: "일본어", image: madi06Jp, phrase: "腹が減っては戦はできぬ", meaning: "배가 고프면 싸울 수 없다." },
+      { lang: "중국어", image: madi02En, phrase: "民以食为天", meaning: "사람에게 먹는 것은 하늘처럼 중요하다." },
+      { lang: "영어", image: madi02En, phrase: "An army marches on its stomach.", meaning: "군대도 먹어야 움직인다." },
     ],
   },
 ];

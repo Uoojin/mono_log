@@ -192,6 +192,7 @@
   font-weight: 500;
 }
 
+/* 소리 */
 .sori_card_grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -309,6 +310,8 @@
   margin: 0;
 }
 
+
+/* 마디 */
 .madi_list {
   display: grid;
   gap: 14px;
@@ -498,6 +501,9 @@
 .madi_note strong {
   font-weight: 500;
 }
+
+
+/* 사이 */
 .sai_group_list {
   display: grid;
   gap: 80px;

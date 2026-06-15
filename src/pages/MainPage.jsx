@@ -97,11 +97,7 @@ function MainPage() {
       <section className="home_hero">
         <img className="hero_bg_image" src={heroBg} alt="" aria-hidden="true" />
         <Header />
-        <div className="hero_label">The Shape of Language</div>
-        <h1 className="hero_title">MONO-LOG</h1>
-        <div className="hero_sub_txt">
-          Exploring Meaning Beyond Translation
-        </div>
+        
       </section>
 
       <main>

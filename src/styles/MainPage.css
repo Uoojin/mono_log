@@ -34,35 +34,6 @@
   user-select: none;
 }
 
-.hero_title {
-  position: absolute;
-  z-index: 2;
-  color: #2934ff;
-  left: 248px;
-  top: 505px;
-  margin: 0;
-  font-size: 90px;
-  font-weight: 600;
-}
-
-.hero_label {
-  position: absolute;
-  z-index: 2;
-  color: #2934ff;
-  font-size: 35px;
-  left: 138px;
-  top: 451px;
-}
-
-.hero_sub_txt {
-  position: absolute;
-  z-index: 2;
-  color: #2934ff;
-  font-size: 34px;
-  right: 140px;
-  top: 929px;
-}
-
 /* ============== 메인 소개 섹션 ================== */
 .about_section {
   padding: 300px 0 200px;
@@ -315,24 +286,7 @@
     --hero-image-fit: cover;
   }
 
-  .hero_title {
-    left: 230px;
-    top: 357px;
-    font-size: 65px;
-  }
-
-  .hero_label {
-    left: 143px;
-    top: 317px;
-    font-size: 26px;
-  }
-
-  .hero_sub_txt {
-    right: 145px;
-    top: 673px;
-    font-size: 25px;
-  }
-
+  
   .about_section {
     padding: 160px 0 150px;
   }
@@ -418,9 +372,11 @@
   }
 
   .language_card.cn {
-    left: 39.5%;
+    left: 38%;
     top: 30%;
   }
+
+  
 
   .language_card.en {
     top: 70%;
@@ -509,6 +465,8 @@
     position: static;
     width: 100%;
   }
+
+  
 
   .language_piece_copy {
     position: static;
